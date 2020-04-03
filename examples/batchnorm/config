@@ -1,0 +1,5 @@
+DOCKER_DIRS="-v /home/sschneider/shared:/home/ubuntu/shared \
+-v /home/sschneider/local:/home/ubuntu/local   \
+-v /home/sschneider/phd:/home/ubuntu/phd"
+DOCKER_NAME="stes/dj"
+GPU=1
