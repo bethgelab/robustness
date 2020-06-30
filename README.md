@@ -13,4 +13,4 @@ Today's state-of-the-art machine vision models are vulnerable to image corruptio
 ## Contact
 
 - Website: [domainadaptation.org/batchnorm](https://domainadaptation.org/batchnorm)
-- Maintainers: [Evgenia Rusak](https://github.com/stes) & [Steffen Schneider](https://github.com/EvgeniaAR)
+- Maintainers: [Evgenia Rusak](https://github.com/EvgeniaAR) & [Steffen Schneider](https://github.com/stes)
