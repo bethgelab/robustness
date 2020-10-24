@@ -8,6 +8,7 @@ Today's state-of-the-art machine vision models are vulnerable to image corruptio
 
 ## News
 
+- The paper was accepted for poster presentation at NeurIPS 2020.
 - A shorter workshop version of our paper was accepted for oral presentation at the [Uncertainty & Robustness in Deep Learning](https://sites.google.com/view/udlworkshop2020) Workshop at ICML '20.
 
 ## Contact
