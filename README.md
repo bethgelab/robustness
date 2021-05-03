@@ -1,17 +1,30 @@
-## Improving robustness against common corruptions by covariate shift adaptation
-Steffen Schneider*, Evgenia Rusak*, Luisa Eck, Oliver Bringmann, Wieland Brendel, Matthias Bethge 
-
-**Coming Soon** -- This repository contains evaluation code for the paper *Improving robustness against common corruptions by covariate shift adaptation*.
-We will release the code in the upcoming weeks. To get notified, watch and/or star this repository to get notified of updates!
-
-Today's state-of-the-art machine vision models are vulnerable to image corruptions like blurring or compression artefacts, limiting their performance in many real-world applications. We here argue that popular benchmarks to measure model robustness against common corruptions (like ImageNet-C) underestimate model robustness in many (but not all) application scenarios. The key insight is that in many scenarios, multiple unlabeled examples of the corruptions are available and can be used for unsupervised online adaptation. Replacing the activation statistics estimated by batch normalization on the training set with the statistics of the corrupted images consistently improves the robustness across 25 different popular computer vision models. Using the corrected statistics, ResNet-50 reaches 62.2% mCE on ImageNet-C compared to 76.7% without adaptation. With the more robust AugMix model, we improve the state of the art from 56.5% mCE to 51.0% mCE. Even adapting to a single sample improves robustness for the ResNet-50 and AugMix models, and 32 samples are sufficient to improve the current state of the art for a ResNet-50 architecture. We argue that results with adapted statistics should be included whenever reporting scores in corruption benchmarks and other out-of-distribution generalization settings
+# Robustness and Adaptation on ImageNet scale
 
 ## News
 
-- The paper was accepted for poster presentation at NeurIPS 2020.
-- A shorter workshop version of our paper was accepted for oral presentation at the [Uncertainty & Robustness in Deep Learning](https://sites.google.com/view/udlworkshop2020) Workshop at ICML '20.
+- April 2021: The pre-print for "Adapting ImageNet-scale models to complex distribution shifts with self-learning" is now available on arXiv: arxiv.org/abs/2104.12928
+- September 2020: The BatchNorm adaptation paper was accepted for poster presentation at NeurIPS 2020.
+- June 2020: The pre-print for "Improving robustness against common corruptions by covariate shift adaptation" is available on arXiv: arxiv.org/abs/2006.16971.pdf
+
+## Papers
+
+### Batchnorm Adaptation
+
+We propose to go beyond the assumption of a single sample from the target domain when evaluating robustness. Re-computing BatchNorm statistics is a simple baseline algorithm for improving the corruption error up to 14% points over a wide range of models, when access to more than a single sample is possible.
+
+- Code release: `batchnorm/`
+- Web: https://domainadaptation.org/batchnorm/
+
+### Robust Pseudo-Labeling
+
+Test-time adaptation with self-learning improves robustness of large-scale computer vision models on ImageNet-C, -R, and -A.
+
+- Code release: `selflearning/`
+- Web: http://domainadaptation.org/selflearning/
+
 
 ## Contact
 
-- Website: [domainadaptation.org/batchnorm](https://domainadaptation.org/batchnorm)
-- Maintainers: [Evgenia Rusak](https://github.com/EvgeniaAR) & [Steffen Schneider](https://github.com/stes)
+- [Evgenia Rusak](https://github.com/EvgeniaAR)
+- [Steffen Schneider](https://stes.io)
+- [George Pachitariu](https://github.com/georgepachitariu)
