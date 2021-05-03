@@ -1,5 +1,16 @@
 # Robustness and Adaptation on ImageNet scale
 
+<table style="width:100%">
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/727984/116836295-4128cf80-abc6-11eb-8457-8502a3c59427.png"/></td>
+    <td><img src="https://domainadaptation.org/selflearning/img/overview.svg"/></td>
+  </tr>
+  <tr>
+    <td>Batch Norm adaptation improves corruption robustness on ImageNet-C.</td>
+    <td>Self-learning during test time improves robustness across ImageNet-C,-A,-R.</td>
+  </tr>
+</table>
+
 ## News
 
 - April 2021: The pre-print for "Adapting ImageNet-scale models to complex distribution shifts with self-learning" is now available on arXiv: arxiv.org/abs/2104.12928
@@ -21,7 +32,6 @@ Test-time adaptation with self-learning improves robustness of large-scale compu
 
 - Code release: `selflearning/`
 - Web: http://domainadaptation.org/selflearning/
-
 
 ## Contact
 
