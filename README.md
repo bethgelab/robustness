@@ -126,9 +126,9 @@ If you want to use part of this code commercially, please carefully check the in
 
 Please reach out for feature requests. Contributions welcome!
 
+- [Steffen Schneider](https://stes.io)
 - [Evgenia Rusak](https://github.com/EvgeniaAR)
 - [George Pachitariu](https://github.com/georgepachitariu)
-- [Steffen Schneider](https://stes.io)
 
 
 *Note: The current version of this code base is a work in progress. We still decided to do this pre-release since the core methods are conceptually easy to use in your own code (batch norm adaptation, self-learning, ... and the current state might already be a useful place to start.*
