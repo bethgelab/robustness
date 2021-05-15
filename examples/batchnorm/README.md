@@ -5,7 +5,7 @@ Steffen Schneider*, Evgenia Rusak*, Luisa Eck, Oliver Bringmann, Wieland Brendel
 Website: [domainadaptation.org/batchnorm](https://domainadaptation.org/batchnorm)
 
 This repository contains evaluation code for the paper *Improving robustness against common corruptions by covariate shift adaptation*.
-We will release the code in the upcoming weeks. To get notified, watch and/or star this repository to get notified of updates!
+The repository is updated frequently. To get notified, watch and/or star this repository!
 
 Today's state-of-the-art machine vision models are vulnerable to image corruptions like blurring or compression artefacts, limiting their performance in many real-world applications. We here argue that popular benchmarks to measure model robustness against common corruptions (like ImageNet-C) underestimate model robustness in many (but not all) application scenarios. The key insight is that in many scenarios, multiple unlabeled examples of the corruptions are available and can be used for unsupervised online adaptation. Replacing the activation statistics estimated by batch normalization on the training set with the statistics of the corrupted images consistently improves the robustness across 25 different popular computer vision models. Using the corrected statistics, ResNet-50 reaches 62.2% mCE on ImageNet-C compared to 76.7% without adaptation. With the more robust AugMix model, we improve the state of the art from 56.5% mCE to 51.0% mCE. Even adapting to a single sample improves robustness for the ResNet-50 and AugMix models, and 32 samples are sufficient to improve the current state of the art for a ResNet-50 architecture. We argue that results with adapted statistics should be included whenever reporting scores in corruption benchmarks and other out-of-distribution generalization settings
 
@@ -26,6 +26,7 @@ With a simple recalculation of batch normalization statistics, we improve the me
 | [DeepAugment+AugMix](https://github.com/hendrycks/imagenet-r) | 53.6 | 48.4 |45.4|
 | [DeepAug+AM+RNXt101](https://github.com/hendrycks/imagenet-r) | **44.5** |**40.7** | **38.0** |
 
+
 ### Results for models trained with [Fixup](https://github.com/hongyi-zhang/Fixup) and [GroupNorm](https://github.com/ppwwyyxx/GroupNorm-reproduce) on ImageNet-C
 
 Fixup and GN trained models perform better than non-adapted BN models but worse than adapted BN models.
@@ -35,6 +36,26 @@ Fixup and GN trained models perform better than non-adapted BN models but worse 
 |ResNet-50 | 72.0  |72.4 |76.7 |**62.2**|
 |ResNet-101 |68.2 |67.6 |69.0 |**59.1**|
 |ResNet-152 |67.6 |65.4 |69.3 |**58.0**|
+
+### To reproduce the first table above
+
+Run [`scripts/paper/table1.sh`](scripts/paper/table1.sh): 
+```sh
+row="2" # This is the row to compute from the table
+docker run -v "$IMAGENET_C_PATH":/ImageNet-C:ro \
+    -v "$CHECKPOINT_PATH":/checkpoints:ro \
+    -v .:/batchnorm \
+    -v ..:/deps \
+    -it georgepachitariu/robustness:latest \
+    bash /batchnorm/scripts/paper/table1.sh $row 2>&1
+```
+The script file requires 2 dependencies:
+1. `IMANGENETC_PATH="/ImageNet-C"`
+    This is the path where you store the ImageNet-C dataset. The dataset is described [here](https://github.com/hendrycks/robustness) and you can download it from [here](https://zenodo.org/record/2235448#.YJjcNyaxWcw).
+    
+2. `CHECKPOINT_PATH="/checkpoints"`
+    This is the path where you store our checkpoints.
+    You can download them from here: TODO.
 
 
 ## News

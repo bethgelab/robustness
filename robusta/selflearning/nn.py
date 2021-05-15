@@ -19,26 +19,28 @@
 # See NOTICE for a list of all third-party licences used in the project.
 
 from torch import nn
-import robusta.selflearning.functional as RF
+import functional as RF
+
 
 class GeneralizedCrossEntropy(nn.Module):
 
-    def __init__(self, q = 0.8):
+    def __init__(self, q=0.8):
         super().__init__()
         self.q = q
 
-    def forward(self, logits, target = None):
+    def forward(self, logits, target=None):
         if target is None:
-            target = logits.argmax(dim = 1)
+            target = logits.argmax(dim=1)
         return RF.gce(logits, target, self.q)
+
 
 class EntropyLoss(nn.Module):
 
-    def __init__(self, stop_teacher_gradient = False):
+    def __init__(self, stop_teacher_gradient=False):
         super().__init__()
         self.stop_teacher_gradient = stop_teacher_gradient
 
-    def forward(self, logits, target = None):
+    def forward(self, logits, target=None):
         if target is None:
             target = logits
         if self.top_teacher_gradient:

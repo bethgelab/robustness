@@ -40,7 +40,6 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-
 __all__ = [
     "fixup_resnet18",
     "fixup_resnet34",
@@ -52,14 +51,21 @@ __all__ = [
 
 def conv3x3(in_planes, out_planes, stride=1):
     """3x3 convolution with padding"""
-    return nn.Conv2d(
-        in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False
-    )
+    return nn.Conv2d(in_planes,
+                     out_planes,
+                     kernel_size=3,
+                     stride=stride,
+                     padding=1,
+                     bias=False)
 
 
 def conv1x1(in_planes, out_planes, stride=1):
     """1x1 convolution"""
-    return nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=stride, bias=False)
+    return nn.Conv2d(in_planes,
+                     out_planes,
+                     kernel_size=1,
+                     stride=stride,
+                     bias=False)
 
 
 class FixupBasicBlock(nn.Module):
@@ -139,11 +145,17 @@ class FixupBottleneck(nn.Module):
 
 
 class FixupResNet(nn.Module):
+
     def __init__(self, block, layers, num_classes=1000):
         super(FixupResNet, self).__init__()
         self.num_layers = sum(layers)
         self.inplanes = 64
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1 = nn.Conv2d(3,
+                               64,
+                               kernel_size=7,
+                               stride=2,
+                               padding=3,
+                               bias=False)
         self.bias1 = nn.Parameter(torch.zeros(1))
         self.relu = nn.ReLU(inplace=True)
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
@@ -160,56 +172,42 @@ class FixupResNet(nn.Module):
                 nn.init.normal_(
                     m.conv1.weight,
                     mean=0,
-                    std=np.sqrt(
-                        2
-                        / (m.conv1.weight.shape[0] * np.prod(m.conv1.weight.shape[2:]))
-                    )
-                    * self.num_layers ** (-0.5),
+                    std=np.sqrt(2 / (m.conv1.weight.shape[0] *
+                                     np.prod(m.conv1.weight.shape[2:]))) *
+                    self.num_layers**(-0.5),
                 )
                 nn.init.constant_(m.conv2.weight, 0)
                 if m.downsample is not None:
                     nn.init.normal_(
                         m.downsample.weight,
                         mean=0,
-                        std=np.sqrt(
-                            2
-                            / (
-                                m.downsample.weight.shape[0]
-                                * np.prod(m.downsample.weight.shape[2:])
-                            )
-                        ),
+                        std=np.sqrt(2 /
+                                    (m.downsample.weight.shape[0] *
+                                     np.prod(m.downsample.weight.shape[2:]))),
                     )
             elif isinstance(m, FixupBottleneck):
                 nn.init.normal_(
                     m.conv1.weight,
                     mean=0,
-                    std=np.sqrt(
-                        2
-                        / (m.conv1.weight.shape[0] * np.prod(m.conv1.weight.shape[2:]))
-                    )
-                    * self.num_layers ** (-0.25),
+                    std=np.sqrt(2 / (m.conv1.weight.shape[0] *
+                                     np.prod(m.conv1.weight.shape[2:]))) *
+                    self.num_layers**(-0.25),
                 )
                 nn.init.normal_(
                     m.conv2.weight,
                     mean=0,
-                    std=np.sqrt(
-                        2
-                        / (m.conv2.weight.shape[0] * np.prod(m.conv2.weight.shape[2:]))
-                    )
-                    * self.num_layers ** (-0.25),
+                    std=np.sqrt(2 / (m.conv2.weight.shape[0] *
+                                     np.prod(m.conv2.weight.shape[2:]))) *
+                    self.num_layers**(-0.25),
                 )
                 nn.init.constant_(m.conv3.weight, 0)
                 if m.downsample is not None:
                     nn.init.normal_(
                         m.downsample.weight,
                         mean=0,
-                        std=np.sqrt(
-                            2
-                            / (
-                                m.downsample.weight.shape[0]
-                                * np.prod(m.downsample.weight.shape[2:])
-                            )
-                        ),
+                        std=np.sqrt(2 /
+                                    (m.downsample.weight.shape[0] *
+                                     np.prod(m.downsample.weight.shape[2:]))),
                     )
             elif isinstance(m, nn.Linear):
                 nn.init.constant_(m.weight, 0)
@@ -218,7 +216,8 @@ class FixupResNet(nn.Module):
     def _make_layer(self, block, planes, blocks, stride=1):
         downsample = None
         if stride != 1 or self.inplanes != planes * block.expansion:
-            downsample = conv1x1(self.inplanes, planes * block.expansion, stride)
+            downsample = conv1x1(self.inplanes, planes * block.expansion,
+                                 stride)
 
         layers = []
         layers.append(block(self.inplanes, planes, stride, downsample))

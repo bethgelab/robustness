@@ -18,9 +18,20 @@
 # authors. Code taken from other open-source projects is indicated.
 # See NOTICE for a list of all third-party licences used in the project.
 
-import torchvision
+from robusta.datasets.base import ImageNetRClasses
 from robusta.datasets.base import RemappedImageNet
 
 
-class ImageNetR(torchvision.datasets.ImageFolder, RemappedImageNet):
-    pass
+class ImageNetR(RemappedImageNet):
+    """This class implements the ImageNet-R dataset from https://arxiv.org/abs/2006.16241,
+    https://github.com/hendrycks/imagenet-r. It contains different renditions of 200 ImageNet
+    classes. The functionality of this dataset is implemented in robusta.datasets.base.py.
+    For the evaluation, one needs to remap the predictions from the 1000 ImageNet classes to
+    the 200 ImageNet-R classes which is done in the RemappedImageNet class."""
+
+    @property
+    def mask(self):
+        return ImageNetRClasses.get_class_mask()
+
+    def accuracy_metric(self, logits, targets):
+        return super().accuracy_metric(logits, targets, ImageNetR.mask)

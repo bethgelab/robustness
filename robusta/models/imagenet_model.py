@@ -4,6 +4,7 @@ import torchvision.models as models
 
 
 class ZeroOneResNet50_parallel(nn.Module):
+
     def __init__(self, device="cuda", pretrained=True):
         super().__init__()
         self.resnet = models.resnet50(pretrained=pretrained)
@@ -23,9 +24,11 @@ class ZeroOneResNet50_parallel(nn.Module):
 
 
 class ZeroOneInceptionV3(nn.Module):
+
     def __init__(self, device="cuda", pretrained=False):
         super().__init__()
-        self.inception = models.inception_v3(pretrained=True, transform_input=True)
+        self.inception = models.inception_v3(pretrained=True,
+                                             transform_input=True)
         self.mean = nn.Parameter(
             torch.FloatTensor([0.485, 0.456, 0.406])[None, :, None, None],
             requires_grad=False,

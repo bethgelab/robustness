@@ -20,7 +20,8 @@
 
 import torch.nn.functional as F
 
-def gce(logits, target, q = 0.8):
+
+def gce(logits, target, q=0.8):
     """ Generalized cross entropy.
     
     Reference: https://arxiv.org/abs/1805.07836
@@ -30,7 +31,8 @@ def gce(logits, target, q = 0.8):
     loss = (1. - probs_with_correct_idx**q) / q
     return loss.mean()
 
-def entropy(logits, target, q = 0.8):
+
+def entropy(logits, target, q=0.8):
     """ Entropy.
     
     """

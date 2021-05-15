@@ -7,7 +7,7 @@
 scontrol show job "$SLURM_JOB_ID"
 
 # The image georgepachitariu/robustness was created using 
-# the Dockerfile from parent folder.
+# the Dockerfile from main repository folder.
 row="2" # This is the row in the table
 singularity exec --nv -B /scratch_local \
     -B "$IMAGENET_C_PATH":/ImageNet-C:ro \
