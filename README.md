@@ -39,7 +39,11 @@ Note that the package is not intended for general purpose domain adaptation. Ins
 We will release the first stable version of the package on PyPI. Until then, you can install directly from the main repo:
 
 ```bash
+# Latest stable release:
 pip install git+git://github.com/bethgelab/robustness.git
+
+# Release candidate:
+pip install git+git://github.com/bethgelab/robustness.git@rc
 ```
 
 Here is an example for how to use `robusta` for batchnorm adaptation & robust pseudo-labeling.
