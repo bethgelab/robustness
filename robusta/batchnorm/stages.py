@@ -17,11 +17,11 @@
 # This licence notice applies to all originally written code by the
 # authors. Code taken from other open-source projects is indicated.
 # See NOTICE for a list of all third-party licences used in the project.
-
 """ Helper functions for stages ablations """
 
 import torchvision
 from torch import nn
+
 
 def split_model(model):
     if not isinstance(model, torchvision.models.ResNet):

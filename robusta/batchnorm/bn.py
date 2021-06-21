@@ -17,7 +17,6 @@
 # This licence notice applies to all originally written code by the
 # authors. Code taken from other open-source projects is indicated.
 # See NOTICE for a list of all third-party licences used in the project.
-
 """ Batch norm variants
 """
 
@@ -39,6 +38,7 @@ def adapt_bayesian(model: nn.Module, prior: float):
 
 
 class PartlyAdaptiveBN(nn.Module):
+
     @staticmethod
     def find_bns(parent, estimate_mean, estimate_var):
         replace_mods = []
@@ -52,8 +52,7 @@ class PartlyAdaptiveBN(nn.Module):
             else:
                 replace_mods.extend(
                     PartlyAdaptiveBN.find_bns(child, estimate_mean,
-                                              estimate_var)
-                )
+                                              estimate_var))
 
         return replace_mods
 
@@ -129,6 +128,7 @@ class PartlyAdaptiveBN(nn.Module):
 
 
 class EMABatchNorm(nn.Module):
+
     @staticmethod
     def reset_stats(module):
         module.reset_running_stats()
@@ -205,23 +205,19 @@ class BayesianBatchNorm(nn.Module):
         self.layer = layer
         self.layer.eval()
 
-        self.norm = nn.BatchNorm2d(
-            self.layer.num_features, affine=False, momentum=1.0
-        )
+        self.norm = nn.BatchNorm2d(self.layer.num_features,
+                                   affine=False,
+                                   momentum=1.0)
 
         self.prior = prior
 
     def forward(self, input):
         self.norm(input)
 
-        running_mean = (
-            self.prior * self.layer.running_mean
-            + (1 - self.prior) * self.norm.running_mean
-        )
-        running_var = (
-            self.prior * self.layer.running_var
-            + (1 - self.prior) * self.norm.running_var
-        )
+        running_mean = (self.prior * self.layer.running_mean +
+                        (1 - self.prior) * self.norm.running_mean)
+        running_var = (self.prior * self.layer.running_var +
+                       (1 - self.prior) * self.norm.running_var)
 
         return F.batch_norm(
             input,

@@ -18,7 +18,6 @@
 # authors. Code taken from other open-source projects is indicated.
 # See NOTICE for a list of all third-party licences used in the project.
 
-
 from robusta.datasets import base
 from robusta.datasets import imagenet200
 from robusta.datasets import imageneta

@@ -18,11 +18,7 @@
 # authors. Code taken from other open-source projects is indicated.
 # See NOTICE for a list of all third-party licences used in the project.
 
-import torch.nn
-
-from robusta.selflearning import functional
-from robusta.selflearning.nn import EntropyLoss 
-from robusta.selflearning.nn import GeneralizedCrossEntropy
+import torch
 
 
 def _iter_params(model):
