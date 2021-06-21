@@ -105,11 +105,18 @@ Here is an example for how to use `robusta` for batchnorm adaptation & robust ps
 
 ### Batch Norm Adaptation
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/improving-robustness-against-common/unsupervised-domain-adaptation-on-imagenet-c)](https://paperswithcode.com/sota/unsupervised-domain-adaptation-on-imagenet-c?p=improving-robustness-against-common)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/improving-robustness-against-common/unsupervised-domain-adaptation-on-imagenet-r)](https://paperswithcode.com/sota/unsupervised-domain-adaptation-on-imagenet-r?p=improving-robustness-against-common)
+
 [[Paper](https://arxiv.org/abs/2006.16971.pdf)] [[Web](https://domainadaptation.org/batchnorm)] [[README](examples/batchnorm/README.md)] [[Implementation](batchnorm/src/evaluate.py)]
 
 We propose to go beyond the assumption of a single sample from the target domain when evaluating robustness. Re-computing BatchNorm statistics is a simple baseline algorithm for improving the corruption error up to 14% points over a wide range of models, when access to more than a single sample is possible.
 
 ### Self-Learning
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/adapting-imagenet-scale-models-to-complex/unsupervised-domain-adaptation-on-imagenet-c)](https://paperswithcode.com/sota/unsupervised-domain-adaptation-on-imagenet-c?p=adapting-imagenet-scale-models-to-complex)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/adapting-imagenet-scale-models-to-complex/unsupervised-domain-adaptation-on-imagenet-r)](https://paperswithcode.com/sota/unsupervised-domain-adaptation-on-imagenet-r?p=adapting-imagenet-scale-models-to-complex)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/adapting-imagenet-scale-models-to-complex/unsupervised-domain-adaptation-on-imagenet-a)](https://paperswithcode.com/sota/unsupervised-domain-adaptation-on-imagenet-a?p=adapting-imagenet-scale-models-to-complex)
 
 [[Paper](https://arxiv.org/abs/2104.12928)] [[Web](https://domainadaptation.org/selflearing)] [[README](examples/selflearning/README.md)] [[Implementation](selflearning/gce.py)]
 
