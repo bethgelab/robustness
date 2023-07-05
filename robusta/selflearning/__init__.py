@@ -21,8 +21,7 @@
 import torch.nn
 
 from robusta.selflearning import functional
-from robusta.selflearning.nn import EntropyLoss 
-from robusta.selflearning.nn import GeneralizedCrossEntropy
+from robusta.selflearning.nn import EntropyLoss, GeneralizedCrossEntropy
 
 
 def _iter_params(model):

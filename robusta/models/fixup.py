@@ -6,7 +6,7 @@ https://github.com/hongyi-zhang/Fixup/blob/master/imagenet/models/fixup_resnet_i
 
 BSD 3-Clause License
 
-Copyright (c) 2019, 
+Copyright (c) 2019,
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -36,10 +36,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
 
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
-
 
 __all__ = [
     "fixup_resnet18",

@@ -21,35 +21,36 @@
 import torchvision.datasets
 import torchvision.transforms
 
+
 class TorchvisionTransform(torchvision.transforms.Compose):
     """Standard torchvision transform for cropped and non-cropped datasets."""
 
-    def __init__(self, resize = False):
+    def __init__(self, resize=False):
         self.resize = resize
 
         self.mean = [0.485, 0.456, 0.406]
         self.std = [0.229, 0.224, 0.225]
-        super().__init__([
-            torchvision.transforms.Resize(256),
-            torchvision.transforms.CenterCrop(224),
-            torchvision.transforms.ToTensor(),
-            torchvision.transforms.Normalize(
-                self.mean, self.std
-            )
-        ])
+        super().__init__(
+            [
+                torchvision.transforms.Resize(256),
+                torchvision.transforms.CenterCrop(224),
+                torchvision.transforms.ToTensor(),
+                torchvision.transforms.Normalize(self.mean, self.std),
+            ]
+        )
+
 
 class ImageNetRobustnessDataset(torchvision.datasets.ImageFolder):
-
-    def __init__(self, dataset_dir, transform = None, **kwargs):
+    def __init__(self, dataset_dir, transform=None, **kwargs):
         if transform == "torchvision":
             transform = TorchvisionTransform()
-        super().__init__(dataset_dir, transform = transform, **kwargs)
+        super().__init__(dataset_dir, transform=transform, **kwargs)
 
     def accuracy_metric(self, logits, targets):
         raise NotImplementedError()
 
-class RemappedImageNet():
 
+class RemappedImageNet:
     def __init__(self):
         super().__init__()
 
@@ -60,4 +61,3 @@ class RemappedImageNet():
     def accuracy_metric(self, logits, targets):
         logits200 = self.map_logits(logits)
         super().accuracy_metric(logits200, targets)
-

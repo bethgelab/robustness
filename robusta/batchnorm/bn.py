@@ -51,8 +51,7 @@ class PartlyAdaptiveBN(nn.Module):
                 replace_mods.append((parent, name, module))
             else:
                 replace_mods.extend(
-                    PartlyAdaptiveBN.find_bns(child, estimate_mean,
-                                              estimate_var)
+                    PartlyAdaptiveBN.find_bns(child, estimate_mean, estimate_var)
                 )
 
         return replace_mods
@@ -61,7 +60,7 @@ class PartlyAdaptiveBN(nn.Module):
     def adapt_model(model, adapt_mean, adapt_var):
         replace_mods = PartlyAdaptiveBN.find_bns(model, adapt_mean, adapt_var)
         print(f"| Found {len(replace_mods)} modules to be replaced.")
-        for (parent, name, child) in replace_mods:
+        for parent, name, child in replace_mods:
             setattr(parent, name, child)
         return model
 
@@ -77,13 +76,11 @@ class PartlyAdaptiveBN(nn.Module):
 
         self.register_buffer(
             "estimated_mean",
-            torch.zeros(layer.running_mean.size(),
-                        device=layer.running_mean.device),
+            torch.zeros(layer.running_mean.size(), device=layer.running_mean.device),
         )
         self.register_buffer(
             "estimated_var",
-            torch.ones(layer.running_var.size(),
-                       device=layer.running_mean.device),
+            torch.ones(layer.running_var.size(), device=layer.running_mean.device),
         )
 
     def reset(self):
@@ -155,7 +152,7 @@ class EMABatchNorm(nn.Module):
     def adapt_model(model):
         replace_mods = EMABatchNorm.find_bns(model)
         print(f"| Found {len(replace_mods)} modules to be replaced.")
-        for (parent, name, child) in replace_mods:
+        for parent, name, child in replace_mods:
             setattr(parent, name, child)
         return model
 
@@ -173,7 +170,7 @@ class EMABatchNorm(nn.Module):
 
 
 class BayesianBatchNorm(nn.Module):
-    """ Use the source statistics as a prior on the target statistics """
+    """Use the source statistics as a prior on the target statistics"""
 
     @staticmethod
     def find_bns(parent, prior):
@@ -194,7 +191,7 @@ class BayesianBatchNorm(nn.Module):
     def adapt_model(model, prior):
         replace_mods = BayesianBatchNorm.find_bns(model, prior)
         print(f"| Found {len(replace_mods)} modules to be replaced.")
-        for (parent, name, child) in replace_mods:
+        for parent, name, child in replace_mods:
             setattr(parent, name, child)
         return model
 
@@ -205,9 +202,7 @@ class BayesianBatchNorm(nn.Module):
         self.layer = layer
         self.layer.eval()
 
-        self.norm = nn.BatchNorm2d(
-            self.layer.num_features, affine=False, momentum=1.0
-        )
+        self.norm = nn.BatchNorm2d(self.layer.num_features, affine=False, momentum=1.0)
 
         self.prior = prior
 
