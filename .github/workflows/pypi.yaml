@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: pip install -e .
+      run: pip install -e '.[dev]'
 
     - name: Run tests
       run: ./test.sh
