@@ -20,7 +20,6 @@
 
 """A package for robustness and adaptation on ImageNet scale."""
 
-from robusta import batchnorm
-from robusta import datasets
-from robusta import models
-from robusta import selflearning
+from robusta import batchnorm, datasets, models, selflearning
+
+__version__ = "0.0.2"
