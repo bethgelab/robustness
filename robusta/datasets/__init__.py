@@ -19,8 +19,4 @@
 # See NOTICE for a list of all third-party licences used in the project.
 
 
-from robusta.datasets import base
-from robusta.datasets import imagenet200
-from robusta.datasets import imageneta
-from robusta.datasets import imagenetc
-from robusta.datasets import imagenetr
+from robusta.datasets import base, imagenet200, imageneta, imagenetc, imagenetr
