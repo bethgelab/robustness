@@ -24,7 +24,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip
+        key: ${{ runner.os }}-python${{ matrix.python-version }}-pip
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
