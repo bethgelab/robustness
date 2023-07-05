@@ -5,6 +5,8 @@ from torch.utils.data import DataLoader, Dataset, _utils
 from torchvision import transforms
 from torchvision.datasets import ImageFolder
 
+import robusta
+
 module_folder = os.path.dirname(os.path.dirname(__file__))
 dummy_dataset_folder = module_folder + "/test/dummy_datasets/"
 
@@ -21,7 +23,7 @@ def test_imagenet():
 
 
 def test_imagenetc():
-    dataset = ImageNetC(
+    dataset = robusta.datasets.ImageNetC(
         root=dummy_dataset_folder + "ImageNet-C",
         corruption="gaussian_blur",
         severity="1",
@@ -35,13 +37,3 @@ def test_imagenetc():
     assert dataset.image_size == (224, 224)
     assert dataset.num_classes == 1000
     assert len(dataset) == 1  # It's only 1 record
-
-
-def test_imagenetr():
-    dataset = robusta.datasets.ImageNetR(corruption=corruption, severity=severity)
-
-    assert False
-
-
-def test_imageneta():
-    assert False

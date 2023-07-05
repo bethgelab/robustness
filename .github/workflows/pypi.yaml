@@ -1,4 +1,4 @@
-name: PyPI Package
+name: Test and build PyPI Package
 
 on:
   push:
@@ -11,7 +11,30 @@ on:
       - main
 
 jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10]
+
+    steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: pip install -e .
+
+    - name: Run tests
+      run: ./test.sh
+
   pypi:
+    needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
