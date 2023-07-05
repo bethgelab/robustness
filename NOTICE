@@ -4,11 +4,11 @@
 License for the Fixup and ImageNet models:
 https://github.com/hongyi-zhang/Fixup/blob/master/LICENSE
 https://github.com/pytorch/vision/blob/master/LICENSE
-   
+
 
 BSD 3-Clause License
 
-Copyright (c) 2017, 
+Copyright (c) 2017,
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -243,5 +243,3 @@ https://github.com/ppwwyyxx/GroupNorm-reproduce/blob/master/LICENSE
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-   
