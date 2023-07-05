@@ -1,6 +1,8 @@
 import os
-from robusta.batchnorm import bn
+
 from torch import nn
+
+from robusta.batchnorm import bn
 
 
 def test_adapt_changes_BatchNorm_to_EMABatchNorm():
