@@ -41,11 +41,14 @@ Note that the package is not intended for general purpose domain adaptation. Ins
 
 ### Quick Start
 
-We will release the first stable version of the package on PyPI. Until then, you can install directly from the main repo:
+You can install the package by running
 
 ```bash
-pip install git+git://github.com/bethgelab/robustness.git
+pip install robusta
 ```
+
+Depending on your system setup, it can make sense to first manually install the correct `torch` and `torchvision`
+versions as described on the [PyTorch website](https://pytorch.org).
 
 Here is an example for how to use `robusta` for batchnorm adaptation & robust pseudo-labeling.
 
